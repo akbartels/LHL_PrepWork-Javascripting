@@ -415,8 +415,202 @@ judgeVegetable(vegetables, metric);
 ls
 ls
 
+// 1. determine the multiples
+// 2. determine the range
+// 3. replace the words
+
+const loopyLighthouse = function(range, multiples, words){
+  for(i = range[0]; i <= range[1]; i++){
+	  if(i % multiples[0] === 0 && i % multiples[1] === 0){
+			console.log(words[0]+words[1]);
+		} else if (i % multiples[0] === 0){
+      console.log(words[0]);
+		} else if (i % multiples[1] === 0){
+			console.log(words[1]);
+		} else {
+			console.log(i);
+		}
+	}	
+}
+
+loopyLighthouse([15, 90], [2, 5], ["Batty", "Beacon"]);
 
 
-*/
+
+const merge = function(array1, array2){
+let newArray = [];
+for (let i = 0; i < array1.length; i++){
+	newArray.push(array1[i]);
+}
+for (let j = 0; j < array2.length; j++){
+	newArray.push(array2[j])
+}
+console.log(newArray.sort());
+}
 
 
+
+
+console.log(merge([ 4, 5, 6 ], [ 1, 2, 3, 4 ]), "=?", [ 1, 2, 3, 4, 4, 5, 6 ]);
+console.log(merge([ 4 ], [ 2, 5, 8 ]), "=?", [ 2, 4, 5, 8 ]);
+console.log(merge([ 1, 2, 6 ], []), "=?", [ 1, 2, 6 ]);
+let repeatNumbers = function(data){
+	let newString = "";
+	if (data.length === 1){
+		for (let i = 0; i < data.length; i++ ){
+			for (let j = 0; j < data[i][1]; j++){
+				newString += data[i][0];
+			}
+		}
+	} else {
+		for (let i = 0; i < data.length; i++ ){
+			for (let j = 0; j < data[i][1]; j++){
+				newString += data[i][0];	
+			}
+			if (i !== data.length -1){
+				newString += ", "
+			}
+		}
+	}
+	return newString;
+}
+
+
+console.log(repeatNumbers([[1, 10]]));
+console.log(repeatNumbers([[1, 2], [2, 3]]));
+console.log(repeatNumbers([[10, 4], [34, 6], [92, 2]]));
+
+const camelCase = function(input){
+	newString = "";
+	for (let i = 0; i < input.length; i++){
+		if(input[i] !== " "){
+			if(input[i-1] === " "){
+				newString += input[i].toUpperCase()
+			} else {
+				newString += input[i];
+			}
+		}
+	}
+	return newString;
+}
+
+console.log(camelCase("this is a string"));
+console.log(camelCase("loopy lighthouse"));
+console.log(camelCase("supercalifragalisticexpialidocious"));
+
+const multiplicationTable = function(maxValue){
+	let newString = "";
+	for(let rows = 1; rows <= maxValue; rows++){
+		for(let cols = 1; cols <= maxValue; cols++){
+			if(rows <= maxValue){
+				newString += (rows * cols) + " ";
+			} 
+		}
+		newString += "\n" 
+
+		if(rows !== maxValue){
+			newString += "\n"
+			} 
+		}
+		return newString;
+	}
+	
+	console.log(multiplicationTable(1));
+	console.log(multiplicationTable(5));
+	console.log(multiplicationTable(10));
+	
+const PI = 3.14159 ;
+
+	const sphereVolume = function (radius) {
+		return ((4/3) * Math.pow(radius, 3)) * 3.14159;
+		
+	}
+	
+	console.log(4186 < sphereVolume(10) && sphereVolume(10) < 4189);
+
+
+//********************************************************
+	
+	const coneVolume = function (radius, height) {
+		return (((1/3) * Math.pow(radius, 2)) * height) * 3.14159
+	}
+	
+	console.log(45 < coneVolume(3, 5) && coneVolume(3, 5) < 49);
+
+	//********************************************************
+	
+	const prismVolume = function (height, width, depth) {
+		return (width * depth) * height;
+	}
+	
+	console.log(prismVolume(3, 4, 5) === 60);
+	
+//********************************************************
+
+	const totalVolume = function (solids) {
+		let total = 0;
+		for(let solid of solids){
+			if(solid.type === "sphere"){
+				total += sphereVolume(solid.radius);
+			} else if (solid.type === "cone"){
+				total += coneVolume(solid.radius, solid.height);
+			} else if (solid.type === "prism"){
+				total += prismVolume(solid.height, solid.width, solid.depth);
+			}
+		}
+		return total;
+	}
+
+	
+	const largeSphere = {
+		type: 'sphere',
+		radius: 40
+	}
+	
+	const smallSphere = {
+		type: 'sphere',
+		radius: 10
+	}
+	
+	const cone = {
+		type: 'cone',
+		radius: 3,
+		height: 5
+	}
+	
+	const duck = [
+		largeSphere,
+		smallSphere,
+		cone
+	]
+	
+	console.log(272000 < totalVolume(duck) && totalVolume(duck) < 275000);
+
+	let talkingCalendar = function(date) {
+		let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Ocotber", "November", "December"];
+		let newDate = new Date(date);
+		let year = newDate.getFullYear(date);
+		let month = months[newDate.getMonth(date)];
+		let day = newDate.getDate(date);
+		if(day === 1 || day === 21 || day === 31){
+			return month + " " + day + "st, " + year;
+		} else if (day === 2 || day === 22){
+			return month + " " + day + "nd, " + year;
+		} else if(day === 3 || day === 23){
+			return month + " " + day + "rd, " + year;
+		} else {
+			return month + " " + day + "th, " + year;
+		}
+	};
+	
+	console.log(talkingCalendar("2017/12/02"));
+	console.log(talkingCalendar("2007/11/11"));
+	console.log(talkingCalendar("1987/08/24"));
+
+
+
+
+
+
+	*/
+	
