@@ -586,6 +586,7 @@ const PI = 3.14159 ;
 	
 	console.log(272000 < totalVolume(duck) && totalVolume(duck) < 275000);
 
+	//	KATA 10 TALKING CALENDAR
 	let talkingCalendar = function(date) {
 		let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Ocotber", "November", "December"];
 		let newDate = new Date(date);
@@ -607,6 +608,76 @@ const PI = 3.14159 ;
 	console.log(talkingCalendar("2007/11/11"));
 	console.log(talkingCalendar("1987/08/24"));
 
+let calculateChange = function(total, cash) {
+		let change = cash - total;
+		let result = {};
+		if(Math.floor(change/2000) > 0){
+			result.twentyDollar = Math.floor(change/2000);
+			change = change - (2000 * (Math.floor(change/2000)));
+		}
+		if (Math.floor(change/1000) > 0){
+			result.tenDollar = Math.floor(change/1000);
+			change = change - (1000 * (Math.floor(change/1000)));
+		}
+		if (Math.floor(change/500) > 0){
+			result.fiveDollar = Math.floor(change/500);
+			change = change - (500 * (Math.floor(change/500)));
+		}
+		if (Math.floor(change/200) > 0){
+			result.twoDollar = Math.floor(change/200);
+			change = change - (200 * (Math.floor(change/200)));
+		}
+		if(Math.floor(change/100) > 0){
+			result.oneDollar = Math.floor(change/100);
+			change = change - (100 * (Math.floor(change/100)));
+		}
+		if (Math.floor(change/25) > 0){
+			result.quarter = Math.floor(change/25);
+			change = change - (25 * (Math.floor(change/25)))
+		}
+		if(Math.floor(change/10) > 0){
+			result.dime = Math.floor(change/10);
+			change = change - (10 * (Math.floor(change/10)));
+		}
+		if(Math.floor(change/5) > 0){
+			result.nickel = Math.floor(change/5);
+			change = change - (5 * (Math.floor(change/5)));
+		}
+		if(Math.floor(change/1) > 0){
+			result.penny = Math.floor(change/1);
+			change = change - (1 * (Math.floor(change/1)));
+		}
+		return result;
+	};
+	
+	console.log(calculateChange(1787, 2000));
+	console.log(calculateChange(2623, 4000));
+	console.log(calculateChange(501, 1000));
+
+	const organizeInstructors = function(instructors) {
+		let courseInstructors = {};
+		for(let i = 0; i < instructors.length; i++){
+			if(instructors[i].course in courseInstructors){
+				courseInstructors[instructors[i].course].push(instructors[i].name)
+			} else {
+				courseInstructors[instructors[i].course] = [instructors[i].name]
+			}
+		}
+		return courseInstructors
+	}
+	
+	console.log(organizeInstructors([
+		{name: "Samuel", course: "iOS"},
+		{name: "Victoria", course: "Web"},
+		{name: "Karim", course: "Web"},
+		{name: "Donald", course: "Web"}
+	]));
+	console.log(organizeInstructors([
+		{name: "Brendan", course: "Blockchain"},
+		{name: "David", course: "Web"},
+		{name: "Martha", course: "iOS"},
+		{name: "Carlos", course: "Web"}
+	]));
 
 
 
