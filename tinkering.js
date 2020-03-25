@@ -679,9 +679,85 @@ let calculateChange = function(total, cash) {
 		{name: "Carlos", course: "Web"}
 	]));
 
+		let string = "test"
+		newObject[string] = "amy"
+		return newObject
 
+		RETURNED { TEST: "AMY"}
 
+//KATA 14 - 
+	const urlDecode = function(text) {
+		let newObject = {};
+		let arrayOne = text.split("&");
+		let arrayTwo = [];
+		let property = "";
+		let propValue = "";
+		let index;
+		for(let array1 of arrayOne){
+			arrayTwo.push(array1.split(""));
+		}
+		for(let x of arrayTwo){
+			for(let y = 0; y < x.length; y++){
+				if(x[y] === "="){
+					index = y;
+				}	
+			}	
+			for (let i = 0; i < x.length; i++){
+				if(i < index){
+					property += x[i];
+				} else if (i > index){
+					propValue += x[i];
+				}
+			}
+			newObject[property] = propValue.replace(/%20/g," ");
+			property = "";
+			propValue = "";	
+		}	
+		return newObject;
+	};
+	
+	
+	console.log(urlDecode("duck=rubber"));
+	console.log(urlDecode("bootcamp=Lighthouse%20Labs"));
+	console.log(urlDecode("city=Vancouver&weather=lots%20of%20rain"));
+	console.log(urlDecode("city=Vancouver&weather=lots%20of%20rain").weather);
 
+	const squareCode = function(message) {
+		let newMessage = message.replace(/ /g, "")
+		let totalChars = newMessage.length;
+		let lineLength = Math.ceil(Math.sqrt(totalChars));
+		let square = "";
+		let code = [];
+		let output = "";
+		
+		for(let x = 0; x < totalChars; x++){
+			if((x+1) % lineLength === 0 || (x+1) === totalChars){
+				square += newMessage[x];
+				code.push(square);
+				square = "";
+			} else {
+				 square += newMessage[x];
+			}
+		}
+
+		for(let i = 0; i <= code.length; i++){
+			for(let index of code){
+				if(index[i] !== undefined){
+					output += index[i];
+				} else {
+					output += "";
+				}
+			}
+			output += " ";
+		}
+		return output;
+		
+	};
+	
+	console.log(squareCode("chill out"));
+	console.log(squareCode("feed the dog"));
+	console.log(squareCode("have a nice day"));
+	console.log(squareCode("if man was meant to stay on the ground god would have given us roots"));
 
 	*/
 	
